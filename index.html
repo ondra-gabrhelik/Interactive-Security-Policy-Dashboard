@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Information Security Policy Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .classification-btn {
+            transition: all 0.3s ease;
+        }
+        .classification-btn.active {
+            background-color: #2563eb;
+            color: white;
+        }
+        .timeline-item .timeline-content {
+            transition: background-color 0.3s ease;
+        }
+        .timeline-item:hover .timeline-content {
+            background-color: #eff6ff;
+        }
+    </style>
+    <!-- Chosen Palette: "Cool Neutrals" - A calm and professional palette using light grays (#f8fafc), slate grays (#1e293b, #475569), and a clear, trustworthy blue (#2563eb) for accents and active states. -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard with a fixed top navigation. This structure was chosen to break down the dense policy text into manageable, thematic sections that a user can easily navigate without scrolling through a long document. The key interaction is the tab-like navigation, which displays one policy section at a time, allowing for focused consumption of information. This approach is more user-friendly for a security review context, as it enables stakeholders to quickly jump to the sections most relevant to them. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Governance, Risk Management, Access Control, etc. (qualitative policies).
+        - Goal: Organize & Inform.
+        - Viz/Presentation Method: Thematic sections presented as cards with icons for quick visual identification. A horizontal timeline is used for the Incident Response Process to visualize the sequence of actions, which is more intuitive than a bulleted list. An interactive toggle is used for Data Classification to encourage user engagement and present detailed information on demand.
+        - Interaction: Users click navigation links to switch content panes. They can interact with the Data Classification toggles to reveal details.
+        - Justification: These choices transform a static document into an engaging, easy-to-digest format. Interactive elements make exploring the policy less passive and more memorable.
+        - Library/Method: Vanilla JS for interactions, HTML/Tailwind for structure and styling.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body>
+
+    <div class="min-h-screen">
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <h1 class="text-xl sm:text-2xl font-bold text-slate-800">Information Security Policy</h1>
+                    <nav class="hidden md:flex space-x-4">
+                        <a href="#governance" class="nav-link text-slate-600 hover:text-blue-600 font-medium border-b-2 border-transparent pb-1">Governance</a>
+                        <a href="#risk" class="nav-link text-slate-600 hover:text-blue-600 font-medium border-b-2 border-transparent pb-1">Risk Management</a>
+                        <a href="#access" class="nav-link text-slate-600 hover:text-blue-600 font-medium border-b-2 border-transparent pb-1">Access Control</a>
+                        <a href="#data" class="nav-link text-slate-600 hover:text-blue-600 font-medium border-b-2 border-transparent pb-1">Data Protection</a>
+                        <a href="#incident" class="nav-link text-slate-600 hover:text-blue-600 font-medium border-b-2 border-transparent pb-1">Incident Response</a>
+                        <a href="#continuity" class="nav-link text-slate-600 hover:text-blue-600 font-medium border-b-2 border-transparent pb-1">Continuity</a>
+                        <a href="#training" class="nav-link text-slate-600 hover:text-blue-600 font-medium border-b-2 border-transparent pb-1">Training</a>
+                    </nav>
+                     <div class="md:hidden">
+                        <select id="mobile-nav" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
+                            <option value="#governance">Governance</option>
+                            <option value="#risk">Risk Management</option>
+                            <option value="#access">Access Control</option>
+                            <option value="#data">Data Protection</option>
+                            <option value="#incident">Incident Response</option>
+                            <option value="#continuity">Continuity</option>
+                            <option value="#training">Training</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <section id="governance" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Governance and Overall Approach</h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">Our information security is an integral part of our corporate governance, supported by a formal management system that defines roles, responsibilities, and processes. This ensures a structured and systematic approach to managing sensitive information and maintaining a robust security posture.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🏛️</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Policy Foundation</h3>
+                        </div>
+                        <p class="text-slate-600">Our security framework is built upon the internationally recognized ISO/IEC 27001 and ISO/IEC 27002 standards, ensuring best practices are at the core of our operations.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">👥</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Roles & Responsibilities</h3>
+                        </div>
+                        <p class="text-slate-600">Clear roles, including a Cyber Security Manager and Cyber Security Auditor, are defined to ensure accountability and a strict separation of duties, minimizing conflicts of interest.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🌐</span>
+                            <h3 class="text-xl font-semibold text-slate-800">External Relations</h3>
+                        </div>
+                        <p class="text-slate-600">We actively monitor threat intelligence from national and international agencies and maintain formal contacts with relevant authorities to stay ahead of evolving cyber threats.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="risk" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Risk Management and Compliance</h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">Risk management is a continuous and core component of our security strategy. We conduct regular, documented risk analyses to identify, evaluate, and mitigate threats to our information assets, ensuring both security and regulatory compliance.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                           <span class="text-3xl mr-4">🔍</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Risk Analysis</h3>
+                        </div>
+                        <p class="text-slate-600">Risks are systematically quantified and reviewed annually or after significant incidents. The formula used is: <br><strong class="font-mono">Risk = Asset Value × Threat Probability × Vulnerability Level</strong>.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">📦</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Asset Management</h3>
+                        </div>
+                        <p class="text-slate-600">We maintain a comprehensive inventory of all information assets. Each asset is assigned a classification, an owner, and a value to inform our risk mitigation priorities.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                           <span class="text-3xl mr-4">📜</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Compliance</h3>
+                        </div>
+                        <p class="text-slate-600">We are fully committed to legal, regulatory, and contractual compliance, including strict adherence to intellectual property rights and data protection laws like GDPR.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="access" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Access Control and Identity Management</h2>
+                 <p class="text-slate-600 mb-8 max-w-3xl">We enforce the principle of least privilege, ensuring that users have access only to the information and systems strictly necessary for their roles. This minimizes the potential for unauthorized access and data exposure.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🆔</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Identity Management</h3>
+                        </div>
+                        <p class="text-slate-600">Each user is assigned a unique identifier. User accounts are systematically and promptly revoked upon termination or a change of employment to prevent lingering access.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🔑</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Strong Authentication</h3>
+                        </div>
+                        <p class="text-slate-600">Multi-factor authentication (MFA) is mandatory for all user accounts. Our password policy enforces a minimum of 12 characters with complexity requirements and annual changes.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                           <span class="text-3xl mr-4">📋</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Access Reviews</h3>
+                        </div>
+                        <p class="text-slate-600">A formal review of all key access rights is conducted at least once a year by the Cyber Security Manager to ensure permissions remain appropriate and necessary.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Data Protection and Privacy</h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">Protecting data throughout its lifecycle is paramount. Our approach includes robust data classification, secure handling procedures, and an unwavering commitment to privacy principles and regulations.</p>
+                
+                <div class="card p-6 mb-8">
+                     <h3 class="text-xl font-semibold text-slate-800 mb-4">Interactive Data Classification Guide</h3>
+                     <p class="text-slate-500 mb-4">Click on a classification level to see its specific handling requirements.</p>
+                    <div class="flex flex-wrap gap-2 mb-4" id="classification-controls">
+                        <button data-target="confidential" class="classification-btn px-4 py-2 rounded-full border border-gray-300 font-medium text-sm">Confidential</button>
+                        <button data-target="internal" class="classification-btn px-4 py-2 rounded-full border border-gray-300 font-medium text-sm">Internal</button>
+                        <button data-target="public" class="classification-btn px-4 py-2 rounded-full border border-gray-300 font-medium text-sm">Public</button>
+                    </div>
+                    <div id="classification-details" class="bg-slate-50 p-4 rounded-lg min-h-[100px]">
+                        <!-- Details will be injected here by JS -->
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🗑️</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Secure Data Erasure</h3>
+                        </div>
+                        <p class="text-slate-600">We have formal processes for the secure and irreversible deletion of data when it is no longer needed, including methods for physical media destruction where applicable.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🛡️</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Privacy by Design</h3>
+                        </div>
+                        <p class="text-slate-600">Our privacy policy is fully compliant with GDPR. We do not process or store customer PII on our own infrastructure, leveraging secure cloud environments or the customer's infrastructure instead.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="incident" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Incident Response and Monitoring</h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">We maintain a formalized incident response plan to ensure a swift, effective, and coordinated response to any security event. This includes continuous monitoring to detect threats and a structured process to manage incidents from discovery to resolution.</p>
+                
+                <div class="card p-6">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-6 text-center">Our Incident Response Process</h3>
+                    <div class="relative">
+                        <div class="hidden sm:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-300" aria-hidden="true"></div>
+                        <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                             <div class="timeline-item text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full z-10 text-xl font-bold">1</div>
+                                    <div class="timeline-content mt-4">
+                                        <h4 class="font-semibold text-slate-700">Detect & Report</h4>
+                                        <p class="text-sm text-slate-500 mt-1">All employees report events to a central point. Urgent issues are escalated by phone.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full z-10 text-xl font-bold">2</div>
+                                    <div class="timeline-content mt-4">
+                                        <h4 class="font-semibold text-slate-700">Assess & Classify</h4>
+                                        <p class="text-sm text-slate-500 mt-1">Events are assessed and categorized as "Events" or critical "Incidents" based on impact.</p>
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="timeline-item text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full z-10 text-xl font-bold">3</div>
+                                    <div class="timeline-content mt-4">
+                                        <h4 class="font-semibold text-slate-700">Respond & Resolve</h4>
+                                        <p class="text-sm text-slate-500 mt-1">Action is taken based on defined response times, with urgent incidents addressed within 1 hour.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full z-10 text-xl font-bold">4</div>
+                                    <div class="timeline-content mt-4">
+                                        <h4 class="font-semibold text-slate-700">Analyze & Learn</h4>
+                                        <p class="text-sm text-slate-500 mt-1">A post-incident analysis identifies the root cause and lessons learned to prevent recurrence.</p>
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="timeline-item text-center">
+                                <div class="flex flex-col items-center">
+                                    <div class="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full z-10 text-xl font-bold">5</div>
+                                    <div class="timeline-content mt-4">
+                                        <h4 class="font-semibold text-slate-700">Monitor</h4>
+                                        <p class="text-sm text-slate-500 mt-1">Continuous monitoring of logs from cloud providers helps detect threats and validate fixes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="continuity" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Business Continuity and Disaster Recovery</h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">Business continuity is a high priority, with documented plans and a robust technical architecture designed to ensure the resilience and availability of our operations against significant disruptions.</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                           <span class="text-3xl mr-4">☁️</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Cloud-Native Infrastructure</h3>
+                        </div>
+                        <p class="text-slate-600">We operate exclusively on geo-redundant, highly available cloud platforms (GitHub, Google Cloud, Cloudflare), which provides a robust, built-in disaster recovery framework.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">📝</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Documented Planning</h3>
+                        </div>
+                        <p class="text-slate-600">We maintain a formal Business Continuity Plan (BCP) and Disaster Recovery Plan (DRP) that define our strategic approach to managing and recovering from disruptions.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-4">🔄</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Annual Testing</h3>
+                        </div>
+                        <p class="text-slate-600">Our BCP and DRP are not just documents—they are living plans that are formally reviewed, updated, and tested at least once a year to ensure their effectiveness.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="training" class="content-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">Employee Awareness and Training</h2>
+                <p class="text-slate-600 mb-8 max-w-3xl">Our employees are our first and most important line of defense. We invest in continuous awareness programs and mandatory training to foster a security-conscious culture and empower our team to protect our information assets.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                           <span class="text-3xl mr-4">🎓</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Mandatory Training</h3>
+                        </div>
+                        <p class="text-slate-600">All employees who handle information assets must undergo comprehensive security training at least once a year, covering current threats, data handling, and company policies.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                           <span class="text-3xl mr-4">✅</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Acceptable Use Policy</h3>
+                        </div>
+                        <p class="text-slate-600">Employees are trained on the acceptable use of all assets and must sign documents acknowledging their responsibilities. Disciplinary procedures are in place for any violations.</p>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center mb-4">
+                           <span class="text-3xl mr-4">💻</span>
+                            <h3 class="text-xl font-semibold text-slate-800">Secure Remote Work</h3>
+                        </div>
+                        <p class="text-slate-600">A strict policy governs remote work, requiring all devices to be protected with measures like full-disk encryption, PIN/biometric access, and anti-malware software.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileNav = document.getElementById('mobile-nav');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        const classificationData = {
+            confidential: {
+                title: 'Confidential Data Handling',
+                description: 'This is highly sensitive information. Access is restricted to a narrow, pre-approved group of individuals on a need-to-know basis. Mandatory encryption is required for both data at rest and in transit. Unauthorized disclosure could cause significant damage.'
+            },
+            internal: {
+                title: 'Internal Data Handling',
+                description: 'This information is for internal company use only and should not be shared externally without authorization from the data owner. Its disclosure could have negative consequences. Examples include internal process documents and project plans.'
+            },
+            public: {
+                title: 'Public Data Handling',
+                description: 'This information is intended for public consumption and carries no restrictions on distribution. Examples include marketing materials, press releases, and information published on our public website.'
+            }
+        };
+
+        const classificationControls = document.getElementById('classification-controls');
+        const classificationDetails = document.getElementById('classification-details');
+
+        function setActiveSection(hash) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.hash === hash);
+            });
+            
+            if (mobileNav.value !== hash) {
+                mobileNav.value = hash;
+            }
+
+            contentSections.forEach(section => {
+                section.classList.toggle('active', section.id === hash.substring(1));
+            });
+        }
+
+        function updateClassificationDetails(target) {
+            const data = classificationData[target];
+            if (!data) return;
+
+            classificationDetails.innerHTML = `
+                <h4 class="font-bold text-lg text-slate-800 mb-2">${data.title}</h4>
+                <p class="text-slate-600">${data.description}</p>
+            `;
+            
+            document.querySelectorAll('.classification-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.target === target);
+            });
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const hash = this.hash;
+                window.location.hash = hash;
+            });
+        });
+
+        mobileNav.addEventListener('change', function() {
+            window.location.hash = this.value;
+        });
+
+        window.addEventListener('hashchange', () => {
+             const hash = window.location.hash || '#governance';
+             setActiveSection(hash);
+        });
+
+        if (classificationControls) {
+            classificationControls.addEventListener('click', function(e) {
+                if (e.target.matches('.classification-btn')) {
+                    const target = e.target.dataset.target;
+                    updateClassificationDetails(target);
+                }
+            });
+             updateClassificationDetails('confidential');
+        }
+
+        const initialHash = window.location.hash || '#governance';
+        setActiveSection(initialHash);
+    });
+</script>
+</body>
+</html>
