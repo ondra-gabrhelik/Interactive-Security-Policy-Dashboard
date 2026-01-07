@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masáže Zlín Štípa | Profesionální relaxační a sportovní masáže</title>
+    <meta name="description" content="Hledáte klid a úlevu od bolesti? Nabízím profesionální relaxační a sportovní masáže ve Zlíně - Štípě. Individuální přístup v příjemném prostředí.">
+    
+    <!-- Tailwind CSS (pro stylování) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonty (Inter pro moderní vzhled) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Ikony (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Nastavení fontu a barev -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f2fbf5',
+                            100: '#e1f6e8',
+                            600: '#059669', // Klidná zelená
+                            800: '#065f46',
+                        },
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            800: '#292524',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- SEO: Strukturovaná data (Schema.org) pro lokální podnik -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HealthAndBeautyBusiness",
+      "name": "Masáže Zlín Štípa",
+      "image": "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Doplňte ulici a číslo",
+        "addressLocality": "Zlín - Štípa",
+        "postalCode": "763 14",
+        "addressCountry": "CZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "49.2736", 
+        "longitude": "17.7552"
+      },
+      "url": "https://www.masazezlinstipa.cz",
+      "telephone": "+420123456789",
+      "priceRange": "$$"
+    }
+    </script>
+</head>
+<body class="font-sans text-stone-800 antialiased bg-stone-50">
+
+    <!-- Navigace -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="ph ph-flower-lotus text-3xl text-primary-600"></i>
+                    <span class="font-semibold text-xl tracking-tight text-stone-800">Masáže Zlín Štípa</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#sluzby" class="text-stone-600 hover:text-primary-600 font-medium transition-colors">Služby</a>
+                    <a href="#cenik" class="text-stone-600 hover:text-primary-600 font-medium transition-colors">Ceník</a>
+                    <a href="#o-mne" class="text-stone-600 hover:text-primary-600 font-medium transition-colors">O mně</a>
+                    <a href="#kontakt" class="bg-primary-600 text-white px-5 py-2.5 rounded-full hover:bg-primary-800 transition-all shadow-md hover:shadow-lg font-medium">
+                        Objednat se
+                    </a>
+                </div>
+
+                <!-- Mobilní menu tlačítko -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-stone-600 hover:text-stone-900 focus:outline-none p-2">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobilní menu (skryté) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1 shadow-lg">
+                <a href="#sluzby" class="block px-3 py-3 text-base font-medium text-stone-600 hover:text-primary-600 hover:bg-stone-50 rounded-md">Služby</a>
+                <a href="#cenik" class="block px-3 py-3 text-base font-medium text-stone-600 hover:text-primary-600 hover:bg-stone-50 rounded-md">Ceník</a>
+                <a href="#o-mne" class="block px-3 py-3 text-base font-medium text-stone-600 hover:text-primary-600 hover:bg-stone-50 rounded-md">O mně</a>
+                <a href="#kontakt" class="block px-3 py-3 text-base font-medium text-primary-600 font-bold hover:bg-stone-50 rounded-md">Objednat se</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Sekce -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+             <!-- Placeholder obrázek - v reálu nahraďte lokální fotkou masérny pro důvěryhodnost -->
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Relaxační masáž atmosféra" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-stone-50/80 to-stone-50"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-800 tracking-tight mb-6">
+                Odpočiňte si.<br>
+                <span class="text-primary-600">Masáže Zlín Štípa</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-stone-600 mb-10 leading-relaxed">
+                Profesionální <strong>relaxační a sportovní masáže</strong> v klidném prostředí kousek od Zlína. 
+                Zbavte se bolesti zad a načerpejte novou energii.
+            </p>
+            <div class="flex justify-center gap-4 flex-col sm:flex-row">
+                <a href="#kontakt" class="px-8 py-4 bg-primary-600 text-white rounded-full font-semibold text-lg hover:bg-primary-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    Rezervovat termín
+                </a>
+                <a href="#sluzby" class="px-8 py-4 bg-white text-stone-700 border border-stone-200 rounded-full font-semibold text-lg hover:bg-stone-50 transition-all hover:border-stone-300 shadow-sm">
+                    Nabídka masáží
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sekce Služby -->
+    <section id="sluzby" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-stone-800 sm:text-4xl">Jaké masáže ve Zlíně nabízím?</h2>
+                <p class="mt-4 text-lg text-stone-500 max-w-2xl mx-auto">
+                    Ať už potřebujete uvolnit zatuhlé svaly po sportu nebo vypnout hlavu po práci, vybereme spolu tu pravou péči.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Karta 1 -->
+                <div class="bg-stone-50 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 border border-stone-100">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6 text-primary-600">
+                        <i class="ph ph-sparkle text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-3">Relaxační masáž</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Jemná technika zaměřená na celkové zklidnění organismu a odbourání stresu. Ideální, pokud hledáte klid a odpočinek.
+                    </p>
+                </div>
+
+                <!-- Karta 2 -->
+                <div class="bg-stone-50 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 border border-stone-100">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6 text-primary-600">
+                        <i class="ph ph-person-simple-run text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-3">Sportovní masáž</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Intenzivnější hmaty pro rychlejší regeneraci svalů. Vhodná pro aktivní sportovce i při bolestech zad ze sedavého zaměstnání.
+                    </p>
+                </div>
+
+                <!-- Karta 3 -->
+                <div class="bg-stone-50 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 border border-stone-100">
+                    <div class="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center mb-6 text-primary-600">
+                        <i class="ph ph-hand-heart text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-800 mb-3">Individuální terapie</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        Kombinace technik na míru vašim aktuálním potížím. Zaměříme se na konkrétní problémová místa (šíje, bedra, nohy).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce O mně / Proč já -->
+    <section id="o-mne" class="py-20 bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="mb-10 lg:mb-0">
+                    <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Masážní salon detail" class="rounded-2xl shadow-lg w-full object-cover h-96">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-stone-800 mb-6">Proč zajít na masáž právě ke mně?</h2>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <i class="ph ph-check-circle text-2xl text-primary-600 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-stone-800">Osobní a klidný přístup</h4>
+                                <p class="text-stone-600">Nejsem masová "fabrika" na masáže. Každému klientovi věnuji 100% pozornost a čas. Váš klid je prioritou.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <i class="ph ph-check-circle text-2xl text-primary-600 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-stone-800">Dostupnost ve Zlíně - Štípě</h4>
+                                <p class="text-stone-600">Pohodlné parkování přímo u objektu. Nemusíte řešit placené zóny v centru Zlína.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <i class="ph ph-check-circle text-2xl text-primary-600 flex-shrink-0 mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg text-stone-800">Certifikované služby</h4>
+                                <p class="text-stone-600">Pravidelně se vzdělávám v nových technikách, abych vám mohl(a) poskytnout tu nejlepší péči.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ceník -->
+    <section id="cenik" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-800">Ceník masáží</h2>
+                <p class="mt-2 text-stone-500">Jednoduchý a přehledný ceník. Platba je možná v hotovosti.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg border border-stone-100 overflow-hidden">
+                <div class="p-8 space-y-6">
+                    <!-- Položka ceníku -->
+                    <div class="flex justify-between items-end border-b border-stone-100 pb-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-stone-800">Masáž zad a šíje</h4>
+                            <span class="text-sm text-stone-500">30 minut</span>
+                        </div>
+                        <div class="text-xl font-bold text-primary-600">400 Kč</div>
+                    </div>
+
+                    <!-- Položka ceníku -->
+                    <div class="flex justify-between items-end border-b border-stone-100 pb-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-stone-800">Relaxační masáž celková</h4>
+                            <span class="text-sm text-stone-500">60 minut</span>
+                        </div>
+                        <div class="text-xl font-bold text-primary-600">700 Kč</div>
+                    </div>
+
+                    <!-- Položka ceníku -->
+                    <div class="flex justify-between items-end border-b border-stone-100 pb-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-stone-800">Sportovní masáž nohou</h4>
+                            <span class="text-sm text-stone-500">45 minut</span>
+                        </div>
+                        <div class="text-xl font-bold text-primary-600">550 Kč</div>
+                    </div>
+                     
+                    <!-- Položka ceníku -->
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h4 class="font-bold text-lg text-stone-800">Masáž celého těla (Intenzivní)</h4>
+                            <span class="text-sm text-stone-500">90 minut</span>
+                        </div>
+                        <div class="text-xl font-bold text-primary-600">1 000 Kč</div>
+                    </div>
+                </div>
+                <div class="bg-primary-50 p-4 text-center text-primary-800 text-sm font-medium">
+                    Máte zájem o dárkový poukaz? Stačí mi napsat.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt a Patička -->
+    <section id="kontakt" class="bg-stone-900 text-stone-300 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Kontaktní údaje -->
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-8">Kontaktujte mě</h2>
+                    <p class="mb-8 text-stone-400">Nejlépe se objednáte telefonicky nebo SMS zprávou. Pokud nezvedám, právě masíruji a ozvu se vám zpět.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center text-primary-500">
+                                <i class="ph ph-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-stone-500">Telefon</p>
+                                <a href="tel:+420123456789" class="text-white font-bold text-lg hover:text-primary-400 transition-colors">+420 123 456 789</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center text-primary-500">
+                                <i class="ph ph-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-stone-500">E-mail</p>
+                                <a href="mailto:info@masazezlinstipa.cz" class="text-white font-bold text-lg hover:text-primary-400 transition-colors">info@masazezlinstipa.cz</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center text-primary-500">
+                                <i class="ph ph-map-pin text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-stone-500">Adresa</p>
+                                <p class="text-white font-medium">Ulice Číslo, 763 14 Zlín - Štípa</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-10 border-t border-stone-800">
+                        <h4 class="text-white font-bold mb-4">Otevírací doba</h4>
+                        <ul class="space-y-2 text-stone-400">
+                            <li class="flex justify-between max-w-xs"><span>Po - Pá</span> <span>8:00 - 18:00 (dle objednání)</span></li>
+                            <li class="flex justify-between max-w-xs"><span>Víkendy</span> <span>Dle domluvy</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mapa -->
+                <div class="h-96 bg-stone-800 rounded-2xl overflow-hidden relative">
+                    <!-- Google Maps Embed Placeholder -->
+                    <!-- Vložte sem svůj vlastní iframe z Google Maps -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10393.75549008984!2d17.745!3d49.27!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713702167d46b7f%3A0x400af0f6615b3e0!2zNzYzIDE0IFBvbmzLWxocHRh!5e0!3m2!1scs!2scz!4v1620000000000!5m2!1scs!2scz" 
+                            width="100%" height="100%" style="border:0; filter: grayscale(1) contrast(1.2) opacity(0.7);" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-stone-800 text-center text-stone-600 text-sm">
+                <p>&copy; 2024 Masáže Zlín Štípa. Všechna práva vyhrazena.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript pro mobilní menu -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Zavřít menu po kliknutí na odkaz
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
