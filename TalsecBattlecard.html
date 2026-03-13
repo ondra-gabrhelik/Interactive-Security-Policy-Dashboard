@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CISO Battle Card: Mobile Banking Security | Talsec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #f8fafc; /* slate-50 */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7); /* slate-800 with opacity */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        @media print {
+            body { background-color: #ffffff; color: #000000; }
+            .glass-card { background: #f8fafc; border: 1px solid #e2e8f0; color: #0f172a; }
+            .text-slate-400 { color: #475569; }
+            .text-emerald-400 { color: #059669; }
+            .text-red-400 { color: #dc2626; }
+            .text-blue-400 { color: #2563eb; }
+            .text-amber-400 { color: #d97706; }
+            .border-slate-700 { border-color: #cbd5e1; }
+            .print-hidden { display: none; }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen flex items-center justify-center">
+
+    <!-- A4 Paper Constraint Container for PDF Export -->
+    <div class="max-w-5xl w-full mx-auto relative">
+        
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-700 pb-6 mb-8">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <i data-lucide="shield-check" class="text-emerald-400 w-10 h-10"></i>
+                    <h1 class="text-3xl font-extrabold tracking-tight">CISO BATTLE CARD</h1>
+                </div>
+                <h2 class="text-lg text-slate-400 font-medium">Mobile Banking Threat Response & Defense Architecture</h2>
+                <p class="text-sm text-slate-500 mt-1">Target Environment: Tier-1 Central Asian Financial Institutions</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-right">
+                <div class="text-2xl font-black tracking-widest text-white">TALSEC<span class="text-emerald-500">.</span></div>
+                <div class="text-xs text-slate-400 font-mono mt-1">DOCUMENT CLASSIFICATION: CONFIDENTIAL / ACTIONABLE</div>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- 1. Threat Landscape -->
+            <section class="glass-card rounded-xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i data-lucide="skull" class="w-24 h-24 text-red-500"></i>
+                </div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-2 bg-red-500/10 rounded-lg border border-red-500/20">
+                        <i data-lucide="radar" class="text-red-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">1. Mobile Threat Landscape</h3>
+                </div>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-red-500 pl-3">Identified attack vectors targeting mobile banking applications and client endpoints.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="smartphone-nfc" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Mobile Banking Trojans & Overlay Attacks</strong>
+                            <span class="text-sm text-slate-400">Malware that casts a fake, invisible UI over the legitimate banking app to intercept credentials, PINs, and biometrics.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="braces" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Dynamic Hooking & Tampering</strong>
+                            <span class="text-sm text-slate-400">Attackers use frameworks like Frida or Xposed to modify application memory at runtime, bypassing auth and security checks.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="eye-off" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Accessibility Service Abuse (ATS)</strong>
+                            <span class="text-sm text-slate-400">Malicious apps exploiting Android Accessibility features to read screen content, steal SMS OTPs, and execute Automated Transfer Systems.</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 2. Detection -->
+            <section class="glass-card rounded-xl p-6 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i data-lucide="microscope" class="w-24 h-24 text-blue-500"></i>
+                </div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                        <i data-lucide="activity" class="text-blue-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">2. Talsec Detection Engine</h3>
+                </div>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-blue-500 pl-3">How the Runtime Application Self-Protection (RASP) identifies compromises in milliseconds.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="cpu" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Deep Environment Telemetry</strong>
+                            <span class="text-sm text-slate-400">Continuous monitoring for Root (Magisk), Jailbreak, Emulators, and Debuggers indicating a hostile device environment.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="code" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Runtime Code Integrity</strong>
+                            <span class="text-sm text-slate-400">Cryptographic checks to detect if the app's signature has been altered or if it has been repackaged and distributed via third-party stores.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="cast" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Screen Reading & Overlay Detection</strong>
+                            <span class="text-sm text-slate-400">Immediate alerts when unauthorized screen recording, casting, or UI redrawing is detected during sensitive banking flows.</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 3. Kinetic Response -->
+            <section class="glass-card rounded-xl p-6 relative overflow-hidden group md:col-span-2">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <i data-lucide="siren" class="w-32 h-32 text-amber-500"></i>
+                </div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-2 bg-amber-500/10 rounded-lg border border-amber-500/20">
+                        <i data-lucide="flame" class="text-amber-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">3. Kinetic Incident Response Playbook</h3>
+                </div>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-amber-500 pl-3">Immediate kinetic activities to be executed by the SOC/IR and Fraud teams upon confirmed telemetry alerts.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
+                            <span class="bg-amber-500/20 px-2 py-0.5 rounded text-xs">Phase 1</span> Triage & Containment
+                        </div>
+                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-inside">
+                            <li><strong>Auto-Kill:</strong> Talsec RASP automatically terminates the app instance on the compromised device.</li>
+                            <li><strong>Fraud Freeze:</strong> SOC temporarily freezes outbound transactions from the affected account profile.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
+                            <span class="bg-amber-500/20 px-2 py-0.5 rounded text-xs">Phase 2</span> Investigation
+                        </div>
+                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-inside">
+                            <li><strong>Telemetry Analysis:</strong> Extract IoCs (Indicators of Compromise) via Talsec dashboard.</li>
+                            <li><strong>Campaign Scope:</strong> Determine if alert correlates with a broader, coordinated malware campaign targeting the region.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                        <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
+                            <span class="bg-amber-500/20 px-2 py-0.5 rounded text-xs">Phase 3</span> Remediation
+                        </div>
+                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-inside">
+                            <li><strong>Session Drop:</strong> Invalidate all active JWT/OAuth sessions for the specific device ID.</li>
+                            <li><strong>Identity Reset:</strong> Force the client into a strict re-authentication flow (e.g., branch visit or trusted secondary channel).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Proactive Defense -->
+            <section class="glass-card rounded-xl p-6 relative overflow-hidden group md:col-span-2 border border-emerald-500/30">
+                <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <i data-lucide="shield" class="w-32 h-32 text-emerald-500"></i>
+                </div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                        <i data-lucide="layers" class="text-emerald-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">4. Proactive Defense Strategies</h3>
+                </div>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-emerald-500 pl-3">Architectural shifts to transition from reactive scrambling to proactive, resilient application security.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex gap-4">
+                        <div class="bg-emerald-500/20 rounded-full w-10 h-10 flex items-center justify-center shrink-0">
+                            <i data-lucide="puzzle" class="text-emerald-400 w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-200">Zero-Trust Mobile Architecture</h4>
+                            <p class="text-sm text-slate-400 mt-1">Embed Talsec directly into the CI/CD pipeline. The banking application must assume the client device is compromised and possess the internal capability to defend itself (App Shielding) without relying on OS-level security.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="bg-emerald-500/20 rounded-full w-10 h-10 flex items-center justify-center shrink-0">
+                            <i data-lucide="git-merge" class="text-emerald-400 w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-200">Anti-Fraud / SIEM Synergy</h4>
+                            <p class="text-sm text-slate-400 mt-1">Ingest Talsec's Threat Intelligence API directly into the bank's core transactional Fraud Engine. <em>Rule Example:</em> If Risk Score > 80 (Screen reading active), step-up auth is mandated, or high-value transfers are hard-blocked.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between items-center border-t border-slate-800 pt-6">
+            <p>&copy; 2024 Talsec. App Shielding & Mobile Security Intelligence.</p>
+            <div class="flex items-center gap-4 mt-2 md:mt-0 print-hidden">
+                <button onclick="window.print()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-lg transition border border-slate-600">
+                    <i data-lucide="printer" class="w-4 h-4"></i> Export to PDF
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
