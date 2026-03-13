@@ -11,7 +11,7 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0b1120; /* Dark background inspired by talsec.app */
+            background-color: #0b1120; 
             color: #f8fafc; 
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
@@ -33,70 +33,75 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Adjustments for seamless PDF printing */
+        /* BULLETPROOF PRINT STYLES */
         @media print {
-            @page { size: A4 portrait; margin: 10mm; }
-            
-            /* Scale down slightly to fit well */
-            html { font-size: 12px !important; }
+            @page { size: A4 portrait; margin: 15mm; }
             
             body { 
-                display: block !important; 
-                height: auto !important; 
-                min-height: auto !important;
-                background-color: #ffffff !important; 
-                background-image: none !important;
+                background: #ffffff !important; 
                 color: #000000 !important; 
-                padding: 0 !important;
-                margin: 0 !important;
+                background-image: none !important;
+                font-size: 10pt !important;
             }
             
-            /* Force the main container to block and flex-column to prevent layout breaks */
-            .max-w-\[1000px\] { max-width: 100% !important; }
-            .grid { display: flex !important; flex-direction: column !important; gap: 1.5rem !important; }
+            /* Destroy grid/flex layouts for print to allow natural text flow */
+            .grid { display: block !important; }
+            .flex-col.md\:flex-row { flex-direction: row !important; }
             
+            /* Simplify cards */
             .glass-card { 
                 display: block !important;
-                background: #f8fafc !important; 
-                border: 1px solid #cbd5e1 !important; 
-                color: #0f172a !important; 
-                margin-bottom: 0 !important; 
-                /* ALLOW breaks inside cards to prevent huge blank spaces */
-                page-break-inside: auto !important;
-                break-inside: auto !important;
+                background: none !important; 
+                border: none !important; 
+                border-bottom: 2px solid #e2e8f0 !important;
+                border-radius: 0 !important;
+                margin-bottom: 1.5rem !important; 
+                padding: 0 0 1rem 0 !important;
                 box-shadow: none !important;
+                /* Allow natural breaks for cards, but keep lists intact */
+                page-break-inside: auto !important; 
+                break-inside: auto !important;
+            }
+
+            /* Prevent list items from breaking in half across pages */
+            li { 
+                page-break-inside: avoid !important; 
+                break-inside: avoid !important;
+                margin-bottom: 1rem !important;
             }
             
-            /* Force text colors for print so white text isn't invisible on white paper */
-            h1, h2, h3, h4, strong, p, span, div, li { color: #0f172a !important; }
-            .text-slate-400, .text-slate-500, .text-slate-300 { color: #475569 !important; }
+            /* Text Color overrides for print */
+            h1, h2, h3, h4, strong, span, div { color: #0f172a !important; }
+            .text-slate-400, .text-slate-300 { color: #475569 !important; }
             .text-slate-200 { color: #0f172a !important; }
             
-            /* Preserve semantic colors for icons and highlights */
+            /* Preserve Semantic Colors */
             .text-emerald-400, .text-emerald-500 { color: #059669 !important; }
             .text-red-400, .text-red-500 { color: #dc2626 !important; }
             .text-blue-400, .text-blue-500 { color: #2563eb !important; }
             .text-amber-400, .text-amber-500 { color: #d97706 !important; }
             
-            /* Fix backgrounds inside cards */
-            .border-slate-700, .border-slate-800 { border-color: #cbd5e1 !important; }
-            .bg-slate-800\/50, .bg-slate-800\/80, .bg-emerald-500\/10, .bg-amber-500\/10, .bg-blue-500\/10, .bg-red-500\/10 { background-color: #f1f5f9 !important; }
+            /* Clean up inner boxes */
+            .bg-slate-800\/50, .bg-slate-800\/80 { 
+                background-color: #f8fafc !important; 
+                border: 1px solid #cbd5e1 !important; 
+            }
             
-            /* Logo inversion (turns white Talsec logo dark for print) */
-            .talsec-logo { filter: invert(1) brightness(0) !important; }
+            /* Hide decorative elements */
+            .opacity-5, .print-hidden { display: none !important; }
+            
+            /* Invert logo for white paper */
+            .talsec-logo { filter: invert(1) brightness(0) !important; height: 24px !important; }
             .gradient-text { background: none; -webkit-text-fill-color: #059669; color: #059669; }
-
-            .print-hidden { display: none !important; }
         }
     </style>
 </head>
 <body class="p-4 md:p-8 min-h-screen flex items-start justify-center">
 
-    <!-- A4 Container for proper export -->
     <div class="max-w-[1000px] w-full mx-auto relative">
         
         <!-- Header -->
-        <header class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-700/50 pb-6 mb-8">
+        <header class="flex justify-between items-end border-b border-slate-700/50 pb-6 mb-8">
             <div>
                 <div class="flex items-center gap-3 mb-2">
                     <img src="https://cdn.prod.website-files.com/5f6c9afa297e5fa91a7201da/66f14dc0fe151b7e46ffefc2_Talsec_logo.svg" alt="Talsec Logo" class="h-8 talsec-logo">
@@ -108,47 +113,47 @@
                     <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-xs font-mono text-slate-400">CONFIDENTIAL</span>
                 </div>
             </div>
-            <div class="mt-4 md:mt-0 text-right">
+            <div class="text-right">
                 <div class="text-3xl font-black tracking-tighter text-white">TALSEC<span class="gradient-text"> SUITE</span></div>
                 <div class="text-xs text-slate-400 font-mono mt-1">MOBILE SECURITY INTELLIGENCE</div>
             </div>
         </header>
 
-        <!-- Main Grid -->
+        <!-- Main Content -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
             <!-- 1. Threats -->
             <section class="glass-card rounded-xl p-6 relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
                     <i data-lucide="skull" class="w-32 h-32 text-red-500"></i>
                 </div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="p-2 bg-red-500/10 rounded-lg border border-red-500/20">
                         <i data-lucide="radar" class="text-red-400 w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white">1. Threat Landscape</h3>
+                    <h3 class="text-xl font-bold text-white">1. Threat Landscape (OSINT Intelligence)</h3>
                 </div>
-                <p class="text-sm text-slate-400 mb-5 border-l-2 border-red-500/50 pl-3">Key attack vectors targeting mobile banking applications and endpoint vulnerabilities.</p>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-red-500/50 pl-3">Key attack vectors targeting financial institutions based on the latest global threat research.</p>
                 <ul class="space-y-4 relative z-10">
                     <li class="flex items-start gap-3">
-                        <i data-lucide="bot" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <i data-lucide="scan-face" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
                         <div>
-                            <strong class="text-slate-200 block">API Abuse & Session Hijacking</strong>
-                            <span class="text-sm text-slate-400">Automated attacks leveraging stolen JWT tokens to mask malicious scripts and botnets as legitimate application instances.</span>
+                            <strong class="text-slate-200 block">Deepfakes & KYC Bypasses (e.g., GoldPickaxe)</strong>
+                            <span class="text-sm text-slate-400">Harvesting biometric data and bypassing liveness checks via virtual camera injections and face-swap attacks.</span>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i data-lucide="layers" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <i data-lucide="ghost" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
                         <div>
-                            <strong class="text-slate-200 block">Banking Trojans & Accessibility Misuse</strong>
-                            <span class="text-sm text-slate-400">Malware that overlays fake UI (Overlay attacks), reads screen content, or intercepts OTPs from SMS messages.</span>
+                            <strong class="text-slate-200 block">Advanced Malware (Snowblind, Brokewell)</strong>
+                            <span class="text-sm text-slate-400">Next-generation Trojans abusing seccomp and accessibility features to blind anti-tampering restrictions and read screens.</span>
                         </div>
                     </li>
                     <li class="flex items-start gap-3">
-                        <i data-lucide="file-code-2" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <i data-lucide="sim-card" class="text-red-400 w-5 h-5 mt-0.5 shrink-0"></i>
                         <div>
-                            <strong class="text-slate-200 block">Reverse Engineering & Hooking (Frida, Xposed)</strong>
-                            <span class="text-sm text-slate-400">Runtime memory modification, decompilation, repackaging of fake clones, and bypassing biometric authentication.</span>
+                            <strong class="text-slate-200 block">AI SIM Swapping & Account Takeover (ATO)</strong>
+                            <span class="text-sm text-slate-400">Highly sophisticated attacks utilizing AI voice agents for automated telecom social engineering and instant identity takeover.</span>
                         </div>
                     </li>
                 </ul>
@@ -156,7 +161,7 @@
 
             <!-- 2. Detection -->
             <section class="glass-card rounded-xl p-6 relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
                     <i data-lucide="microscope" class="w-32 h-32 text-blue-500"></i>
                 </div>
                 <div class="flex items-center gap-3 mb-4">
@@ -165,27 +170,27 @@
                     </div>
                     <h3 class="text-xl font-bold text-white">2. Talsec Detection Ecosystem</h3>
                 </div>
-                <p class="text-sm text-slate-400 mb-5 border-l-2 border-blue-500/50 pl-3">Millisecond-level compromise identification using a multi-layered architecture.</p>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-blue-500/50 pl-3">Millisecond-level compromise identification utilizing AI and multi-layered architecture.</p>
                 <ul class="space-y-4 relative z-10">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="zap" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Device Risk State API</strong>
+                            <span class="text-sm text-slate-400">Instant, real-time queries for current risk scores and device status, accessible directly by the banking backend during critical flows.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="globe-2" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
+                        <div>
+                            <strong class="text-slate-200 block">Global Threat Intelligence Dashboard</strong>
+                            <span class="text-sm text-slate-400">Collection and evaluation of billions of signals worldwide, providing real-time visibility into active threats and malware campaigns.</span>
+                        </div>
+                    </li>
                     <li class="flex items-start gap-3">
                         <i data-lucide="fingerprint" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
                         <div>
-                            <strong class="text-slate-200 block">AppiCrypt® - Cryptographic Proof of Integrity</strong>
-                            <span class="text-sm text-slate-400">Zero-trust solution. Every API call contains an encrypted cryptogram validating that the request originates from an untampered app and a specific device.</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i data-lucide="cpu" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
-                        <div>
-                            <strong class="text-slate-200 block">RASP+ Telemetry</strong>
-                            <span class="text-sm text-slate-400">Active detection of Root (Magisk), Jailbreak, emulators, debuggers, and unauthorized screen recording/sharing (Screen Capture).</span>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i data-lucide="shield-alert" class="text-blue-400 w-5 h-5 mt-0.5 shrink-0"></i>
-                        <div>
-                            <strong class="text-slate-200 block">Malware Detection SDK</strong>
-                            <span class="text-sm text-slate-400">Proactive scanning for unofficial installations (Sideloading) and apps requesting high-risk permissions directly on the client's device.</span>
+                            <strong class="text-slate-200 block">AppiCrypt® & RASP+ Telemetry</strong>
+                            <span class="text-sm text-slate-400">Zero-trust cryptographic proof of integrity that instantly identifies and blocks compromised sessions, screen overlays, and emulators.</span>
                         </div>
                     </li>
                 </ul>
@@ -193,44 +198,43 @@
 
             <!-- 3. Kinetic Response -->
             <section class="glass-card rounded-xl p-6 relative overflow-hidden group lg:col-span-2">
-                <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
                     <i data-lucide="siren" class="w-40 h-40 text-amber-500"></i>
                 </div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="p-2 bg-amber-500/10 rounded-lg border border-amber-500/20">
-                        <i data-lucide="zap" class="text-amber-400 w-6 h-6"></i>
+                        <i data-lucide="swords" class="text-amber-400 w-6 h-6"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white">3. SOC/IR Kinetic Response Playbook</h3>
                 </div>
-                <p class="text-sm text-slate-400 mb-5 border-l-2 border-amber-500/50 pl-3">Immediate actions for the SOC and Fraud teams upon intercepting a telemetry alert or invalid cryptogram.</p>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-amber-500/50 pl-3">Immediate kinetic actions for the SOC and Fraud teams upon intercepting a high-risk score.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
                     <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
                         <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
                             <span class="bg-amber-500/20 px-2 py-0.5 rounded text-xs font-mono border border-amber-500/30">PHASE 1</span> Triage & Containment
                         </div>
-                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-outside ml-4 marker:text-slate-600">
-                            <li><strong class="text-slate-200">WAF / API Drop:</strong> The backend (API Gateway) instantly drops requests lacking a valid AppiCrypt® token.</li>
-                            <li><strong class="text-slate-200">App Auto-Kill:</strong> RASP+ terminates the app on the compromised device (e.g., upon Frida detection).</li>
-                            <li><strong class="text-slate-200">Screen Blanking:</strong> Automatic screen blanking upon an attempt to capture a screenshot of sensitive data.</li>
+                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-outside ml-4 marker:text-slate-500">
+                            <li><strong class="text-slate-200">API Drop:</strong> The backend instantly drops requests returning poor evaluations from the <em>Device Risk State API</em>.</li>
+                            <li><strong class="text-slate-200">App Auto-Kill:</strong> Talsec automatically terminates the app upon detecting security bypasses (e.g., seccomp abuse).</li>
                         </ul>
                     </div>
                     <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
                         <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
                             <span class="bg-amber-500/20 px-2 py-0.5 rounded text-xs font-mono border border-amber-500/30">PHASE 2</span> Investigation
                         </div>
-                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-outside ml-4 marker:text-slate-600">
-                            <li><strong class="text-slate-200">Telemetry Analysis:</strong> Correlation of anomalies via the Talsec Portal or internal SIEM (e.g., Elastic Cloud).</li>
-                            <li><strong class="text-slate-200">Campaign ID:</strong> Distinguishing between an isolated rooted phone and a widespread distribution campaign of a fake banking clone.</li>
+                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-outside ml-4 marker:text-slate-500">
+                            <li><strong class="text-slate-200">Threat Intelligence:</strong> Leverage the Talsec Portal for instant correlation and visualization of malware campaigns on a global scale.</li>
+                            <li><strong class="text-slate-200">Vector Analysis:</strong> Determine if the anomaly stems from an isolated virtual camera attack or a widespread ATO SIM swap campaign.</li>
                         </ul>
                     </div>
                     <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
                         <div class="text-amber-400 font-bold mb-2 flex items-center gap-2">
                             <span class="bg-amber-500/20 px-2 py-0.5 rounded text-xs font-mono border border-amber-500/30">PHASE 3</span> Remediation
                         </div>
-                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-outside ml-4 marker:text-slate-600">
-                            <li><strong class="text-slate-200">Session Revocation:</strong> Immediate invalidation of JWT/OAuth tokens for the identified DeviceID.</li>
-                            <li><strong class="text-slate-200">SIM Swap Prevention:</strong> Enforcing authentication tied to a specific physical device (Device Binding check).</li>
+                        <ul class="text-sm text-slate-300 space-y-2 list-disc list-outside ml-4 marker:text-slate-500">
+                            <li><strong class="text-slate-200">Session Revocation:</strong> Immediate invalidation of tokens and active sessions for the compromised Device ID.</li>
+                            <li><strong class="text-slate-200">SIM Swap Prevention:</strong> Secure future sessions with a strict cryptographic bond to the physical hardware (Device Binding).</li>
                         </ul>
                     </div>
                 </div>
@@ -238,37 +242,37 @@
 
             <!-- 4. Proactive Defense -->
             <section class="glass-card rounded-xl p-6 relative overflow-hidden group lg:col-span-2 border-t-4 border-t-emerald-500">
-                <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
                     <i data-lucide="shield-check" class="w-40 h-40 text-emerald-500"></i>
                 </div>
                 <div class="flex items-center gap-3 mb-4">
                     <div class="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
                         <i data-lucide="lock-keyhole" class="text-emerald-400 w-6 h-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white">4. Proactive Hardening & Prevention</h3>
+                    <h3 class="text-xl font-bold text-white">4. Proactive Defense & Real-time Integration</h3>
                 </div>
-                <p class="text-sm text-slate-400 mb-5 border-l-2 border-emerald-500/50 pl-3">Architectural measures to permanently enhance security and achieve regulatory compliance (OWASP MASVS, RBI DPSC).</p>
+                <p class="text-sm text-slate-400 mb-5 border-l-2 border-emerald-500/50 pl-3">Continuous integration of Talsec AI into business workflows for seamless OWASP MASVS compliance.</p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                     <div class="flex gap-4">
-                        <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700 h-fit shrink-0 shadow-inner">
+                        <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700 h-fit shrink-0 shadow-sm">
+                            <i data-lucide="git-merge" class="text-emerald-400 w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-200">KYC & Transactional Anti-Fraud</h4>
+                            <p class="text-sm text-slate-400 mt-1 leading-relaxed">
+                                Instant blocking of active threats. Before a large money transfer or identity verification (KYC), the backend queries the <strong>Device Risk State API</strong>. If a <em>Virtual Camera</em> or active screen recording is detected, the transaction is frozen immediately.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700 h-fit shrink-0 shadow-sm">
                             <i data-lucide="network" class="text-emerald-400 w-6 h-6"></i>
                         </div>
                         <div>
                             <h4 class="font-semibold text-slate-200">Network Hardening & Secrets Vault</h4>
                             <p class="text-sm text-slate-400 mt-1 leading-relaxed">
-                                Deployment of <strong>Dynamic TLS Pinning</strong> to eliminate Man-in-the-Middle (MiTM) attacks. Utilization of the <em>Secrets Vault</em> component for obfuscation and encryption of sensitive strings (API keys, hostnames) stored directly in the code (Data at Rest).
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700 h-fit shrink-0 shadow-inner">
-                            <i data-lucide="git-merge" class="text-emerald-400 w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-slate-200">Anti-Fraud System Synergy</h4>
-                            <p class="text-sm text-slate-400 mt-1 leading-relaxed">
-                                Ingestion of Talsec Risk Scoring directly into the bank's transactional engine. <em>Example rule:</em> If AppiCrypt indicates the presence of a 'Screen Reader' or an active overlay, critical outbound transactions are automatically frozen.
+                                Deployment of <strong>Dynamic TLS Pinning</strong> to eliminate Man-in-the-Middle (MiTM) attacks. Utilization of the <em>Secrets Vault</em> component for obfuscation and encryption of sensitive strings (Data at Rest).
                             </p>
                         </div>
                     </div>
@@ -284,7 +288,7 @@
                 Compliant with OWASP MASVS, RBI DPSC & CSA SAS 2.0
             </div>
             <div class="text-sm text-slate-500 mt-2 md:mt-0 font-mono">
-                &copy; 2025 Talsec AppSec Intelligence
+                &copy; 2026 Talsec AppSec Intelligence
             </div>
             <div class="mt-4 md:mt-0 print-hidden">
                 <button onclick="window.print()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-2.5 rounded-lg transition-all border border-slate-600 shadow-lg hover:shadow-emerald-500/20">
@@ -296,7 +300,6 @@
     </div>
 
     <script>
-        // Initialize icons
         lucide.createIcons();
     </script>
 </body>
