@@ -35,7 +35,11 @@
 
         /* Adjustments for seamless PDF printing */
         @media print {
-            @page { size: A4 portrait; margin: 12mm; }
+            @page { size: A4 portrait; margin: 10mm; }
+            
+            /* Scale down slightly to fit well */
+            html { font-size: 12px !important; }
+            
             body { 
                 display: block !important; 
                 height: auto !important; 
@@ -46,14 +50,23 @@
                 padding: 0 !important;
                 margin: 0 !important;
             }
+            
+            /* Force the main container to block and flex-column to prevent layout breaks */
+            .max-w-\[1000px\] { max-width: 100% !important; }
+            .grid { display: flex !important; flex-direction: column !important; gap: 1.5rem !important; }
+            
             .glass-card { 
+                display: block !important;
                 background: #f8fafc !important; 
                 border: 1px solid #cbd5e1 !important; 
                 color: #0f172a !important; 
-                page-break-inside: avoid;
-                break-inside: avoid;
+                margin-bottom: 0 !important; 
+                /* ALLOW breaks inside cards to prevent huge blank spaces */
+                page-break-inside: auto !important;
+                break-inside: auto !important;
                 box-shadow: none !important;
             }
+            
             /* Force text colors for print so white text isn't invisible on white paper */
             h1, h2, h3, h4, strong, p, span, div, li { color: #0f172a !important; }
             .text-slate-400, .text-slate-500, .text-slate-300 { color: #475569 !important; }
@@ -67,7 +80,7 @@
             
             /* Fix backgrounds inside cards */
             .border-slate-700, .border-slate-800 { border-color: #cbd5e1 !important; }
-            .bg-slate-900\/50, .bg-emerald-500\/10, .bg-amber-500\/10, .bg-blue-500\/10, .bg-red-500\/10 { background-color: #f1f5f9 !important; }
+            .bg-slate-800\/50, .bg-slate-800\/80, .bg-emerald-500\/10, .bg-amber-500\/10, .bg-blue-500\/10, .bg-red-500\/10 { background-color: #f1f5f9 !important; }
             
             /* Logo inversion (turns white Talsec logo dark for print) */
             .talsec-logo { filter: invert(1) brightness(0) !important; }
@@ -92,13 +105,12 @@
                 </div>
                 <h2 class="text-lg text-slate-300 font-medium">Mobile Banking Protection Strategy & Threat Response</h2>
                 <div class="flex items-center gap-2 mt-2">
-                    <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-xs font-mono text-emerald-400">TARGET: HALYKBANK</span>
                     <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-xs font-mono text-slate-400">CONFIDENTIAL</span>
                 </div>
             </div>
             <div class="mt-4 md:mt-0 text-right">
-                <div class="text-3xl font-black tracking-tighter text-white">APP<span class="gradient-text">SHIELDING</span></div>
-                <div class="text-xs text-slate-400 font-mono mt-1">POWERED BY TALSEC SUITE</div>
+                <div class="text-3xl font-black tracking-tighter text-white">TALSEC<span class="gradient-text"> SUITE</span></div>
+                <div class="text-xs text-slate-400 font-mono mt-1">MOBILE SECURITY INTELLIGENCE</div>
             </div>
         </header>
 
